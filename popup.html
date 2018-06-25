@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Head basic rules -->
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Bias Exposer</title>
+  <link rel="stylesheet" href="main.css">
+  <!-- Firebase connection -->
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+</head>
+
+<body>
+  <!-- STANDARD SITE when extension not loading or not on news site-->
+  <div id="loaded-standard-site">
+    
+  </div>
+  <!-- FULL-SCREEN LOADING ICON (200x200 screen size, 100x100 loading icon size).
+       Display settings managed in popup.js. -->
+  <div id="loading-site">
+    <div id="container">
+      <div id="circle"></div>
+    </div>
+  </div>
+
+  <!-- FULL LOADED NEWS SITE, will load if news site URL is in database
+       Loading icon in news site (...) have no effect, as the div 
+       #loaded-news-site will load once the first asynchronous callback 
+       (which is the #company-name) is fetched from the database. If
+       a section does not have the corresponding information in the 
+       database, that section's display is set to "none" from popup.js. -->
+  <div id="loaded-news-site">
+
+    <!-- Company name and bias button, #bias-button href changes to email
+         or link to bias example based on whether or not that exists for 
+         the particular news source. -->
+    <h2 id="company-name">...</h2>
+    <a id="bias-button" href="https://example.com" target="_blank">
+      <div id="bias-rating">...</div>
+      <div id="bias-example">View Example</div>
+    </a>
+
+    <!-- Small tooltip to explain the bias rating and example -->
+    <div id="tooltip">What's this?
+      <span id="tooltiptext">
+        This is a bias rating based on Media Bias Fact Check, along with 
+        an example of a biased article found by Open Lens.
+      </span>
+    </div>
+
+    <hr>
+
+    <!-- More info section includes:
+          -Factual Reporting ranking
+          -Notable Awards
+          -Parent Company
+         The section will always include something as factual reporting is 
+         provided by MBFC, and thus is available for every news organization -->
+    <div id="more-info">
+      <div id="more-info-header">More Info</div>
+      <div class="small-header" id="factual-reporting-header">Factual Reporting</div>
+      <div id="factual-reporting">...</div>
+      <div class="small-header" id="notable-awards-header">Notable Awards</div>
+      <div id="notable-awards">...</div>
+      <div class="small-header" id="parent-company-header">Parent Company</div>
+      <div id="parent-company">...</div>
+    </div>
+
+    <hr>
+
+    <!-- Footer includes sources and an ending Open Lens tag. The sources are
+         filled in by JavaScript directly from the backend - if there are no
+         sources, nothing is added, and #sources-header disappears. -->
+    <div id="footer">
+      <div id="sources-header">Sources:
+        <span id="sources"></span>
+      </div>
+      <div id="open-lens-tag">Made with 🖤 by
+        <a href="https://openlensresearch.wordpress.com/" target="_blank">Open Lens</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase connection -->
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+  <!-- JavaScript link to HTML doc -->
+  <script src="popup.js"></script>
+</body>
+
+</html>
