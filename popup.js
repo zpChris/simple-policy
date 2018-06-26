@@ -58,7 +58,7 @@ function update_logo(dbRefObject) {
             chrome.browserAction.setIcon({ path: "right.png" });
         } else {
             // Base logo if URL not in database (not on indexed news site)
-            chrome.browserAction.setIcon({ path: "open_lens.png" });
+            chrome.browserAction.setIcon({ path: "media-bias-exposer.png" });
         }
     });
 }

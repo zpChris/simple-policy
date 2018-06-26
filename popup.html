@@ -14,7 +14,10 @@
 <body>
   <!-- STANDARD SITE when extension not loading or not on news site-->
   <div id="loaded-standard-site">
-    
+    <div id="heading">
+      <h2 id="header">Media Bias Exposer</h2>
+      <h4 id="header-open-lens">by Open Lens</h4>
+    </div>
   </div>
   <!-- FULL-SCREEN LOADING ICON (200x200 screen size, 100x100 loading icon size).
        Display settings managed in popup.js. -->
@@ -82,7 +85,7 @@
     </div>
   </div>
 
-  <!-- Firebase connection -->
+  <!-- Firebase connection (must be before JavaScript link) -->
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
   <!-- JavaScript link to HTML doc -->
   <script src="popup.js"></script>

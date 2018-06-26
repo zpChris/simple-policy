@@ -18,6 +18,27 @@ hr {
 
 /* ----------
 
+STANDARD SITE
+
+ --------- */
+
+#heading {
+  text-align: left;
+}
+
+#header {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+#header-open-lens {
+  font-size: 15px;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+/* ----------
+
 NEWS SITE
 
  --------- */
