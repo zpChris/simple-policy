@@ -4,10 +4,10 @@
   "description": "This extension reveals the bias of various news sources. Go to https://openlensresearch.wordpress.com/ for more information.",
   "version": "1.0",
   "icons": {
-    "128": "media-bias-exposer.png"
+    "128": "images/media-bias-exposer-128.png"
   },
   "browser_action": {
-    "default_icon": "media-bias-exposer.png",
+    "default_icon": "images/media-bias-exposer-128.png",
     "default_popup": "popup.html"
   },
   "background": {

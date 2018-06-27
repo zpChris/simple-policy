@@ -47,18 +47,66 @@ function updateApp() {
 function update_logo(dbRefObject) {
     dbRefObject.child("Bias Rating").once("value", function (snap) {
         if (snap.val() == "Left") {
-            chrome.browserAction.setIcon({ path: "left.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/left-16.png",
+                    "32": "images/left-32.png",
+                    "48": "images/left-48.png",
+                    "64": "images/left-64.png",
+                    "128b": "images/left-128.png"
+                }
+            });
         } else if (snap.val() == "Left-Center") {
-            chrome.browserAction.setIcon({ path: "left-center.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/left-center-16.png",
+                    "32": "images/left-center-32.png",
+                    "48": "images/left-center-48.png",
+                    "64": "images/left-center-64.png",
+                    "128b": "images/left-center-128.png"
+                }
+            });
         } else if (snap.val() == "Center") {
-            chrome.browserAction.setIcon({ path: "center.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/center-16.png",
+                    "32": "images/center-32.png",
+                    "48": "images/center-48.png",
+                    "64": "images/center-64.png",
+                    "128b": "images/center-128.png"
+                }
+            });
         } else if (snap.val() == "Right-Center") {
-            chrome.browserAction.setIcon({ path: "right-center.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/right-Center-16.png",
+                    "32": "images/right-Center-32.png",
+                    "48": "images/right-Center-48.png",
+                    "64": "images/right-Center-64.png",
+                    "128b": "images/right-Center-128.png"
+                }
+            });
         } else if (snap.val() == "Right") {
-            chrome.browserAction.setIcon({ path: "right.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/right-16.png",
+                    "32": "images/right-32.png",
+                    "48": "images/right-48.png",
+                    "64": "images/right-64.png",
+                    "128b": "images/right-128.png"
+                }
+            });
         } else {
             // Base logo if URL not in database (not on indexed news site)
-            chrome.browserAction.setIcon({ path: "media-bias-exposer.png" });
+            chrome.browserAction.setIcon({ 
+                path: {
+                    "16": "images/media-bias-exposer-16.png",
+                    "32": "images/media-bias-exposer-32.png",
+                    "48": "images/media-bias-exposer-48.png",
+                    "64": "images/media-bias-exposer-64.png",
+                    "128b": "images/media-bias-exposer-128.png"
+                }
+            });
         }
     });
 }
