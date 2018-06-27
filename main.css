@@ -45,7 +45,8 @@ NEWS SITE
 
 /* Keep links same color, visited or not */
 a, a:visited {
-  color: #0000FF;
+  color: #4157d5;
+  text-decoration: none;
 }
 
 #company-name {
@@ -162,9 +163,17 @@ a, a:visited {
   text-align: left;
 }
 #sources-header {
+  font-size: 12px;
   color: #a0a0a0;
 }
+#sources {
+  font-size: 11px;
+  padding: 2.5px 0px;
+  text-decoration: none;
+}
 #open-lens-tag {
+  text-align: center;
+  margin-top: 10px;
   font-size: 14px;
 }
 
