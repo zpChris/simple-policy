@@ -6,6 +6,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+/* This is a list of subdomain cases that require the 'third' element of the 
+array to be accessed to determine the correct domain for the database */
+var subdomain_cases = ["go,com","co,uk"];
+
 // When window loads, update app
 window.onload = function () {
     // Set the app to standard display settings (loading symbol)
@@ -29,7 +33,15 @@ function updateApp() {
        as a key */
     chrome.tabs.query({ "active": true, "lastFocusedWindow": true }, function (tabs) {
         var base_url = (new URL(tabs[0].url)).hostname; // stores URL hostname in base_url
-        base_url = base_url.split(".").join(","); // Replaces "." with "," to allow as database Object key
+
+        base_url = base_url.split("."); // Splits components based on '.' location
+        var shortened_base_url = [base_url[base_url.length - 2], base_url[base_url.length - 1]]; // gets last two array values
+        // catch exceptions such as 'co.uk' domains (dailymail.co.uk) or 'abcnews.go.com'
+        if (subdomain_cases.includes(shortened_base_url.toString())) {
+            shortened_base_url = [base_url[base_url.length - 3], base_url[base_url.length - 2], base_url[base_url.length - 1]];
+        }
+        base_url = shortened_base_url.join(","); // re-joins base_url with ',' to allow database usability
+        
         // The URL object that holds information about the organization
         const dbRefObject = firebase.database().ref().child(base_url);
         /* Determine if need to update logo/icon or entire popup depending on
@@ -100,11 +112,11 @@ function update_logo(dbRefObject) {
             // Base logo if URL not in database (not on indexed news site)
             chrome.browserAction.setIcon({ 
                 path: {
-                    "16": "images/media-bias-exposer-16.png",
-                    "32": "images/media-bias-exposer-32.png",
-                    "48": "images/media-bias-exposer-48.png",
-                    "64": "images/media-bias-exposer-64.png",
-                    "128b": "images/media-bias-exposer-128.png"
+                    "16": "images/no-bias-news-16.png",
+                    "32": "images/no-bias-news-32.png",
+                    "48": "images/no-bias-news-48.png",
+                    "64": "images/no-bias-news-64.png",
+                    "128b": "images/no-bias-news-128.png"
                 }
             });
         }

@@ -22,20 +22,33 @@ STANDARD SITE
 
  --------- */
 
-#heading {
+#loaded-standard-site {
   text-align: left;
 }
 
 #header {
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
-#header-open-lens {
-  font-size: 15px;
-  margin: 0px;
-  margin-bottom: 5px;
+#open-lens-heading-tag {
+  margin-bottom: -5px;
 }
+
+#section-header {
+  font-size: 18px;
+  color: #7f7f7f;
+  margin-top: 2.5px;
+  margin-bottom: -7.5px;
+}
+
+#section-p {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
 
 /* ----------
 

@@ -5,7 +5,7 @@
   <!-- Head basic rules -->
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Bias Exposer</title>
+  <title>No Bias News</title>
   <link rel="stylesheet" href="main.css">
   <!-- Firebase connection -->
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
@@ -15,8 +15,36 @@
   <!-- STANDARD SITE when extension not loading or not on news site-->
   <div id="loaded-standard-site">
     <div id="heading">
-      <h2 id="header">Media Bias Exposer</h2>
-      <h4 id="header-open-lens">by Open Lens</h4>
+      <h2 id="header">No Bias News <img src="images/no-bias-news-128.png" width="20px" /></h2>
+      <a href="https://openlensresearch.wordpress.com/" target="_blank"><img id="open-lens-heading-tag" src="images/open-lens-made-by-logo.png" width="125px"/></a>
+    </div>
+    <hr>
+    <div id="section-header">
+      About
+    </div>
+    <div id="section-p">
+      No Bias News better educates readers by clearly displaying news 
+      sources' biases and backgrounds when visiting their site.
+    </div>
+    <div id="section-header">
+      Methodology
+    </div>
+    <div id="section-p">
+      We gather our information from <a href="https://mediabiasfactcheck.com/" target="_blank">No Bias News</a> 
+      as well as other sources - these are shown when visiting their news page (see <a href="http://www.msnbc.com/" target="_blank">MSNBC</a> as an example).
+    </div>
+    <div id="section-header">
+      The Makers
+    </div>
+    <div id="section-p">
+      Open Lens is a student-led group dediated to promoting transparency across 
+      business, government, and society. Check out our blog <a href="https://medium.com/@openlens" target="_blank">here</a>.
+    </div>
+    <hr>
+    <div id="section-p">
+      Contact: <a href="mailto:support@openlens.net" target="_blank">research@openlens.net</a>
+      Request to add news source: 
+      <a href="mailto:research@openlens.net?subject=Add a News Source&body=Please add the following news source:" target="_blank">here</a>.
     </div>
   </div>
   <!-- FULL-SCREEN LOADING ICON (200x200 screen size, 100x100 loading icon size).
@@ -28,7 +56,7 @@
   </div>
 
   <!-- FULL LOADED NEWS SITE, will load if news site URL is in database
-       Loading icon in news site (...) have no effect, as the div 
+       Loading icon in news site (...) has no effect, as the div 
        #loaded-news-site will load once the first asynchronous callback 
        (which is the #company-name) is fetched from the database. If
        a section does not have the corresponding information in the 
@@ -79,7 +107,7 @@
       <div id="sources-header">Sources:
         <span id="sources"></span>
       </div>
-      <div id="open-lens-tag"><a href="https://openlensresearch.wordpress.com/" target="_blank"><img src="images/open_lens_made_by_logo.png" width="150px" margin="0px"></a>
+      <div id="open-lens-tag"><a href="https://openlensresearch.wordpress.com/" target="_blank"><img src="images/open-lens-made-by-logo.png" width="150px" margin="0px"></a>
       </div>
     </div>
   </div>

@@ -10,17 +10,17 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-The Media Bias Exposer is a Chrome extension that takes the bias and "factual reporting" ratings from <a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a> and displays these in an organized manner, along with other relevant information, when visiting the specific news website.
+The No Bias News Chrome Extension takes the bias and "factual reporting" ratings from <a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a> and displays these in an organized manner, along with other relevant information, when visiting the specific news website.
 
 DISCLAIMER
 ----------
 
-The source we used for this project (<a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a>) has their own Chrome extension <a href="https://chrome.google.com/webstore/detail/official-media-bias-fact/hdcpibgmmcnpjmmenengjgkkfohahegk?hl=en-US">here</a>. Although we determined this while creating Media Bias Exposer, our extension still holds additional relevant information that may be interesting to you, the user.
+The source we used for this project (<a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a>) has their own Chrome extension <a href="https://chrome.google.com/webstore/detail/official-media-bias-fact/hdcpibgmmcnpjmmenengjgkkfohahegk?hl=en-US">here</a>. Although we determined this while creating No Bias News, our extension still holds additional relevant information that may be interesting to you, the user.
 
 REQUIREMENTS
 ------------
 
-Since this is a Chrome extension, you have to use Google Chrome for the extension to work. Additionally, not all news sites are indexed - however, if you find a site you want Open Lens to add, please contact us at <a href="mailto:research@openlens.net?subject=Add ___ to Media Bias Exposer">research@openlens.net</a>.
+Since this is a Chrome extension, you have to use Google Chrome for the extension to work. Additionally, not all news sites are indexed - however, if you find a site you want Open Lens to add, please contact us at <a href="mailto:research@openlens.net?subject=Add ___ to No Bias News">research@openlens.net</a>.
 
 FAQ
 ---
