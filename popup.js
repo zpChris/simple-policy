@@ -186,6 +186,9 @@ function display_news_html(dbRefObject) {
             document.getElementById("bias-button").style.border = "3px solid #f16f65";
             document.getElementById("bias-button").style.color = "#f16f65";
             document.getElementById("bias-rating").style.background = "linear-gradient(135deg, #f6afaa 0%,#f7665b 100%)";
+            if (bias_rating == "Right-Center") {
+                document.getElementById("bias-rating").style.fontSize = "18px"; // Prevent overflow while maintaining font size for other values
+            }
         } else if (bias_rating == "Center") {
             document.getElementById("bias-button").style.border = "3px solid #fca371";
             document.getElementById("bias-button").style.color = "#fca371";
