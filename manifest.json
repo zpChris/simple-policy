@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "No Bias News",
-  "description": "This extension reveals the bias of various news sources. Go to https://openlensresearch.wordpress.com/ for more information.",
+  "description": "This extension reveals the bias and backgrounds of various news sources. Go to https://openlensresearch.wordpress.com/ for more information.",
   "version": "1.0",
   "icons": {
     "128": "images/no-bias-news-128.png"
