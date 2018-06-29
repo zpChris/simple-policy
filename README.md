@@ -10,7 +10,7 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-The No Bias News Chrome Extension takes the bias and "factual reporting" ratings from <a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a> and displays these in an organized manner, along with other relevant information, when visiting the specific news website.
+The No Bias News Chrome extension takes the bias and "factual reporting" ratings from <a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a> and displays these in an organized manner, along with other relevant information, when visiting the specific news website.
 
 DISCLAIMER
 ----------
