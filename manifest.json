@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "No Bias News",
   "description": "No Bias News reveals the biases and backgrounds of various news sources.",
-  "version": "1.0",
+  "version": "1.01",
   "icons": {
     "128": "images/no-bias-news-128.png",
     "64": "images/no-bias-news-64.png",
