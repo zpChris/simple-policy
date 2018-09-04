@@ -35,13 +35,13 @@ Aside from the design, we provide more information regarding the news organizati
 
 **What is Open Lens?**
 
-<a href="https://openlensresearch.wordpress.com/">Open Lens</a> is a student-lead organization that promotes transparency through small tech tools, interviews, and blog posts.
+<a href="https://openlensresearch.weebly.com/">Open Lens</a> is a student-lead organization that promotes transparency through small tech tools, interviews, and blog posts.
 
 **Who runs Open Lens?**
 
-Open Lens is run by four students from Mercer Island: Chris Elliott, Albert Lam, Brian Park, and Minje Park. To learn more about the creators, visit our <a href="https://openlensresearch.wordpress.com/about-us/">about page</a>.
+Open Lens is run by four students from Mercer Island: Chris Elliott, Albert Lam, Brian Park, and Minje Park. To learn more about the creators, visit our <a href="https://openlensresearch.weebly.com/about-us/">about page</a>.
 
 CREATORS
 --------
 
-This project was created by <a href="https://openlensresearch.wordpress.com/">Open Lens</a>, a student-lead organization that promotes transparency through small tech tools, interviews, and blog posts. Please contact <a href="mailto:research@openlens.net?subject=Sharing important research">research@openlens.net</a> to share important information, or <a href="mailto:interviews@openlens.net?subject=I'm interested in being interviewed">interviews@openlens.net</a> to arrange an interview, or <a href="mailto:hello@openlens.net?subject=Hi Open Lens!">hello@openlens.net</a> to just say hi!
+This project was created by <a href="https://openlensresearch.weebly.com/">Open Lens</a>, a student-lead organization that promotes transparency through small tech tools, interviews, and blog posts. Please contact <a href="mailto:research@openlens.net?subject=Sharing important research">research@openlens.net</a> to share important information, or <a href="mailto:interviews@openlens.net?subject=I'm interested in being interviewed">interviews@openlens.net</a> to arrange an interview, or <a href="mailto:hello@openlens.net?subject=Hi Open Lens!">hello@openlens.net</a> to just say hi!
