@@ -1,8 +1,8 @@
 // Initialize Firebase
 var config = {
-  apiKey: 'AIzaSyDmCjNQb6z9kwwwKP9XqWO1le9gy2W-MD4',
-  databaseURL: 'https://media-bias-exposer.firebaseio.com',
-  storageBucket: 'media-bias-exposer.appspot.com'
+  apiKey: 'l3TcldnNmr3Yrm6VIEIx7Dc8aE3DB0NCZf4kNC7r',
+  databaseURL: 'https://simple-policy.firebaseio.com',
+  storageBucket: 'simple-policy.appspot.com'
 };
 firebase.initializeApp(config);
 
@@ -15,7 +15,7 @@ window.onload = function () {
     // Set the app to standard display settings (loading symbol)
     document.getElementById("loaded-standard-site").style.display = "None";
     document.getElementById("loading-site").style.display = "Block";
-    document.getElementById("loaded-news-site").style.display = "None";
+    document.getElementById("loaded-privacy-policy").style.display = "None";
 
     chrome.tabs.query({ "active": true, "lastFocusedWindow": true }, function (tabs) {
         var base_url = (new URL(tabs[0].url)).hostname; // stores URL hostname in base_url
@@ -30,11 +30,13 @@ window.onload = function () {
 
         // The URL object that holds information about the organization
         const dbRefObject = firebase.database().ref().child(base_url);
+
         /* Determine if need to update logo/icon or entire popup depending on
            whether popup is currently open */
         
         update_popup(dbRefObject);
     });
+
 }
 
 // When tab changes, update app
@@ -63,71 +65,6 @@ function update_logo() {
         // The URL object that holds information about the organization
         const dbRefObject = firebase.database().ref().child(base_url);
 
-        // Add different images and sizes accordingly
-        dbRefObject.child("Bias Rating").once("value", function (snap) {
-            if (snap.val() == "Left") {
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/left-16.png",
-                        "32": "images/left-32.png",
-                        "48": "images/left-48.png",
-                        "64": "images/left-64.png",
-                        "128b": "images/left-128.png"
-                    }
-                });
-            } else if (snap.val() == "Left-Center") {
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/left-center-16.png",
-                        "32": "images/left-center-32.png",
-                        "48": "images/left-center-48.png",
-                        "64": "images/left-center-64.png",
-                        "128b": "images/left-center-128.png"
-                    }
-                });
-            } else if (snap.val() == "Center") {
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/center-16.png",
-                        "32": "images/center-32.png",
-                        "48": "images/center-48.png",
-                        "64": "images/center-64.png",
-                        "128b": "images/center-128.png"
-                    }
-                });
-            } else if (snap.val() == "Right-Center") {
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/right-Center-16.png",
-                        "32": "images/right-Center-32.png",
-                        "48": "images/right-Center-48.png",
-                        "64": "images/right-Center-64.png",
-                        "128b": "images/right-Center-128.png"
-                    }
-                });
-            } else if (snap.val() == "Right") {
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/right-16.png",
-                        "32": "images/right-32.png",
-                        "48": "images/right-48.png",
-                        "64": "images/right-64.png",
-                        "128b": "images/right-128.png"
-                    }
-                });
-            } else {
-                // Base logo if URL not in database (not on indexed news site)
-                chrome.browserAction.setIcon({
-                    path: {
-                        "16": "images/no-bias-news-16.png",
-                        "32": "images/no-bias-news-32.png",
-                        "48": "images/no-bias-news-48.png",
-                        "64": "images/no-bias-news-64.png",
-                        "128b": "images/no-bias-news-128.png"
-                    }
-                });
-            }
-        });
     });
 }
 
@@ -140,17 +77,17 @@ function update_popup(dbRefObject) {
             /* Check if news site isn't already loaded before changing display.
                This also prevents the sources from being added twice, but I added
                a catch in the display_news_html method anyway */
-            if (document.getElementById("loaded-news-site").style.display != "block") {
+            if (document.getElementById("loaded-privacy-policy").style.display != "block") {
                 document.getElementById("loaded-standard-site").style.display = "None";
                 document.getElementById("loading-site").style.display = "Block";
-                document.getElementById("loaded-news-site").style.display = "None";
+                document.getElementById("loaded-privacy-policy").style.display = "None";
                 display_news_html(dbRefObject);
             }
         } else {
             // Otherwise, display the standard popup
             document.getElementById("loaded-standard-site").style.display = "Block";
             document.getElementById("loading-site").style.display = "None";
-            document.getElementById("loaded-news-site").style.display = "None";
+            document.getElementById("loaded-privacy-policy").style.display = "None";
         }
     });
 }
@@ -160,13 +97,27 @@ function update_popup(dbRefObject) {
    database, that section's display is set to "none" from here. */
 function display_news_html(dbRefObject) {
     // Variables to hold database information
-    var bias_rating;
-    var bias_example;
-    var factual_reporting;
-    var notable_awards;
-    var parent_company;
-    var source_links;
-    var source_titles;
+    var change_policy; // 1-5 RATING W/ INFO --> NUM == RATING, SUBSEQUENT STRING IS INFO
+    var db_date; // DB
+    var db_people; // DB
+    var db_reported; // DB
+    var db_source_titles; // DB
+    var db_source_titles; // DBD
+    var db_summary; // DB
+    var info_access; // 1-5 RATING W/ INFO
+    var privacy_link; // LINK/SOURCE TO MORE INFO
+    var privacy_link_title; // LINK/SOURCE TITLE FOR MORE INFO
+    var what_info; // PURE INFO
+    var what_security; // PURE INFO
+    var who_share; // 1-5 RATING W/ INFO
+
+
+    // Variables to hold background colors
+    var very_poor_background = "#A31621"; 
+    var poor_background = "#BC555D";
+    var ok_background = "#D3D3D3";
+    var good_background = "#9fC957";
+    var very_good_background = "#7CB518";
 
     // Show name 
     dbRefObject.child("Name").once("value", function (snap) {
@@ -175,98 +126,120 @@ function display_news_html(dbRefObject) {
         I can show the display of the loading news site */
         document.getElementById("loaded-standard-site").style.display = "None";
         document.getElementById("loading-site").style.display = "None";
-        document.getElementById("loaded-news-site").style.display = "Block";
+        document.getElementById("loaded-privacy-policy").style.display = "Block";
     });
 
-    // Change background color of #bias-button based on the bias rating
-    dbRefObject.child("Bias Rating").once("value", function (snap) {
-        bias_rating = snap.val();
-        document.getElementById("bias-rating").innerHTML = bias_rating + " Bias";
-        if (bias_rating == "Right" || bias_rating == "Right-Center") {
-            document.getElementById("bias-button").style.border = "3px solid #f16f65";
-            document.getElementById("bias-button").style.color = "#f16f65";
-            document.getElementById("bias-rating").style.background = "linear-gradient(135deg, #f6afaa 0%,#f7665b 100%)";
-            if (bias_rating == "Right-Center") {
-                document.getElementById("bias-rating").style.fontSize = "18px"; // Prevent overflow while maintaining font size for other values
-            }
-        } else if (bias_rating == "Center") {
-            document.getElementById("bias-button").style.border = "3px solid #fca371";
-            document.getElementById("bias-button").style.color = "#fca371";
-            document.getElementById("bias-rating").style.background = "linear-gradient(135deg, #fad961 0%,#fc8949 100%)";
-        } else if (bias_rating == "Left" || bias_rating == "Left-Center") {
-            document.getElementById("bias-button").style.border = "3px solid #369bfe";
-            document.getElementById("bias-button").style.color = "#369bfe";
-            document.getElementById("bias-rating").style.background = "linear-gradient(135deg, #99dfff 0%,#2f95f9 100%)";
+    dbRefObject.child("Info Access").once("value", function (snap) {
+        info_access = snap.val();
+        if (info_access.substring(0,1) == 1) {
+            document.getElementById("info-access-color").style.background = very_poor_background;
+        } else if (info_access.substring(0,1) == 2) {
+            document.getElementById("info-access-color").style.background = poor_background;
+        } else if (info_access.substring(0,1) == 3) {
+            document.getElementById("info-access-color").style.background = ok_background;
+        } else if (info_access.substring(0,1) == 4) {
+            document.getElementById("info-access-color").style.background = good_background;
+        } else if (info_access.substring(0,1) == 5) {
+            document.getElementById("info-access-color").style.background = very_good_background;
         }
-
+        document.getElementById("info-access-text").innerHTML = info_access.substring(4);
     });
 
-    // Set button equal to Bias Example URL, if "None" then change text and link to pre-filled email
-    dbRefObject.child("Bias Example").once("value", function (snap) {
-        bias_example = snap.val();
-        if (bias_example == "None") {
-            document.getElementById("bias-example").innerHTML = "Send an Example";
-            document.getElementById("bias-button").setAttribute("href", "mailto:research@openlens.net?subject=New Bias Example&body=Please add the URL here: ");
+    dbRefObject.child("Who Share").once("value", function (snap) {
+        info_access = snap.val();
+        if (info_access.substring(0,1) == 1) {
+            document.getElementById("who-share-color").style.background = very_poor_background;
+        } else if (info_access.substring(0,1) == 2) {
+            document.getElementById("who-share-color").style.background = poor_background;
+        } else if (info_access.substring(0,1) == 3) {
+            document.getElementById("who-share-color").style.background = ok_background;
+        } else if (info_access.substring(0,1) == 4) {
+            document.getElementById("who-share-color").style.background = good_background;
+        } else if (info_access.substring(0,1) == 5) {
+            document.getElementById("who-share-color").style.background = very_good_background;
+        }
+        document.getElementById("who-share-text").innerHTML = info_access.substring(4);
+    });
+
+    dbRefObject.child("Change Policy").once("value", function (snap) {
+        info_access = snap.val();
+        if (info_access.substring(0,1) == 1) {
+            document.getElementById("change-policy-color").style.background = very_poor_background;
+        } else if (info_access.substring(0,1) == 2) {
+            document.getElementById("change-policy-color").style.background = poor_background;
+        } else if (info_access.substring(0,1) == 3) {
+            document.getElementById("change-policy-color").style.background = ok_background;
+        } else if (info_access.substring(0,1) == 4) {
+            document.getElementById("change-policy-color").style.background = good_background;
+        } else if (info_access.substring(0,1) == 5) {
+            document.getElementById("change-policy-color").style.background = very_good_background;
+        }
+        document.getElementById("change-policy-text").innerHTML = info_access.substring(4);
+    });
+
+    // DB SECTION -- SKIPPED IF DATE == NONE (THEN NO BREACH WAS FOUND)
+
+    // DB Date
+    dbRefObject.child("DB Date").once("value", function (snap) {
+        db_date = snap.val();
+        if (db_date == "None") {
+            document.getElementById("db-breach").style.display = "None";
+            document.getElementById("db-date-header").style.display = "None";
+            document.getElementById("db-date").style.display = "None";
         } else {
-            document.getElementById("bias-button").setAttribute("href", bias_example);
+            document.getElementById("db-date").innerHTML = db_date;
         }
     });
 
-    // Factual reporting - change color based on value
-    dbRefObject.child("Factual Reporting").once("value", function (snap) {
-        factual_reporting = snap.val();
-        document.getElementById("factual-reporting").innerHTML = factual_reporting;
-        if (factual_reporting == "Very Low") {
-            document.getElementById("factual-reporting").style.color = "#A31621";
-        } else if (factual_reporting == "Low") {
-            document.getElementById("factual-reporting").style.color = "#BC555D";
-        } else if (factual_reporting == "Mixed") {
-            document.getElementById("factual-reporting").style.color = "#FFA500";
-        } else if (factual_reporting == "High") {
-            document.getElementById("factual-reporting").style.color = "#9FC957";
-        } else if (factual_reporting == "Very High") {
-            document.getElementById("factual-reporting").style.color = "#7CB518";
-        }
-    });
-
-    // Notable awards
-    dbRefObject.child("Notable Awards").once("value", function (snap) {
-        notable_awards = snap.val();
-        if (notable_awards == "None") {
-            document.getElementById("notable-awards-header").style.display = "None";
-            document.getElementById("notable-awards").style.display = "None";
+    // DB Reported
+    dbRefObject.child("DB Reported").once("value", function (snap) {
+        db_reported = snap.val();
+        if (db_reported == "None") {
+            document.getElementById("db-reported-header").style.display = "None";
+            document.getElementById("db-reported").style.display = "None";
         } else {
-            document.getElementById("notable-awards").innerHTML = notable_awards;
+            document.getElementById("db-reported").innerHTML = db_reported;
+        }
+    });
+    
+    // DB People
+    dbRefObject.child("DB People").once("value", function (snap) {
+        db_people = snap.val();
+        if (db_people == "None") {
+            document.getElementById("db-people-header").style.display = "None";
+            document.getElementById("db-people").style.display = "None";
+        } else {
+            document.getElementById("db-people").innerHTML = db_people;
         }
     });
 
-    // Parent company
-    dbRefObject.child("Parent Company").once("value", function (snap) {
-        parent_company = snap.val();
-        if (parent_company == "None") {
-            document.getElementById("parent-company-header").style.display = "None";
-            document.getElementById("parent-company").style.display = "None";
+    // DB Summary
+    dbRefObject.child("DB Summary").once("value", function (snap) {
+        db_summary = snap.val();
+        if (db_summary == "None") {
+            document.getElementById("db-summary-header").style.display = "None";
+            document.getElementById("db-summary-text").style.display = "None";
         } else {
-            document.getElementById("parent-company").innerHTML = parent_company;
+            document.getElementById("db-summary-text").innerHTML = db_summary;
         }
     });
 
     /* Add sources in sequentially after separating by semicolon and adding
-       a links from JavaScript into #sources span tags from HTML */
-    dbRefObject.child("Sources").once("value", function (snap) {
-        source_links = snap.val() + "";
-        if (source_links == "None") {
-            document.getElementById("sources-header").style.display = "None";
+       a links from JavaScript into #db-sources span tags from HTML */
+    dbRefObject.child("DB Sources").once("value", function (snap) {
+        db_source_links = snap.val() + "";
+        if (db_source_links == "None") {
+            document.getElementById("db-sources-header").style.display = "None";
 
-        // Check if #sources has child elements (as sources might have already been added)
-        } else if (!document.getElementById("sources").hasChildNodes()) {
+        // Check if #db-sources has child elements (as sources might have already been added)
+        } else if (!document.getElementById("db-sources").hasChildNodes()) {
             // The source titles I'll need for the newly created elements
-            dbRefObject.child("Source Titles").once("value", function (snap) {
-                source_titles = snap.val();
+            dbRefObject.child("DB Source Titles").once("value", function (snap) {
+                db_source_titles = snap.val();
 
                 // Split the sources based on semicolon placement
-                var new_source_link = source_links.split(" ; "); // Separate the different source links
-                var new_source_title = source_titles.split(" ; "); // Same, with source titles
+                var new_source_link = db_source_links.split(" ; "); // Separate the different source links
+                var new_source_title = db_source_titles.split(" ; "); // Same, with source titles
 
                 // Cycle through sources until all gone
                 for (var i = 0; i < new_source_link.length; i++) {
@@ -277,14 +250,77 @@ function display_news_html(dbRefObject) {
                     source_element.setAttribute("target", "_blank");
 
                     // Add source_element to HTML doc
-                    document.getElementById("sources").appendChild(source_element);
+                    document.getElementById("db-sources").appendChild(source_element);
 
                     // If not the last element, add a comma to separate links
                     if (i != new_source_link.length - 1) {
                         var comma_element = document.createElement("span");
                         comma_element.appendChild(document.createTextNode(", "));
                         comma_element.style.color = "black";
-                        document.getElementById("sources").appendChild(comma_element);
+                        document.getElementById("db-sources").appendChild(comma_element);
+                    }
+                }
+
+            });
+        }
+    });
+
+    /* ADDING IN ACCOUNT INFO & SECURITY TOOLTIPS */
+    // Account Info Collected
+    dbRefObject.child("What Info").once("value", function (snap) {
+        what_info = snap.val();
+        if (what_info == "None") {
+            document.getElementById("what-info-tooltip").style.display = "None";
+            document.getElementById("what-info-text").style.display = "None";
+        } else {
+            document.getElementById("what-info-text").innerHTML = what_info;
+        }
+    });
+    // Security in Place
+    dbRefObject.child("What Security").once("value", function (snap) {
+        what_security = snap.val();
+        if (what_security == "None") {
+            document.getElementById("what-security-tooltip").style.display = "None";
+            document.getElementById("what-security-text").style.display = "None";
+        } else {
+            document.getElementById("what-security-text").innerHTML = what_security;
+        }
+    });
+    
+    /* Add sources in sequentially after separating by semicolon and adding
+    a links from JavaScript into #privacy-link span tags from HTML */
+    dbRefObject.child("Privacy Link").once("value", function (snap) {
+        privacy_link = snap.val() + "";
+        if (privacy_link == "None") {
+            document.getElementById("privacy-link-header").style.display = "None";
+
+            // Check if #privacy-link has child elements (as sources might have already been added)
+        } else if (!document.getElementById("privacy-link").hasChildNodes()) {
+            // The source titles I'll need for the newly created elements
+            dbRefObject.child("Privacy Link Title").once("value", function (snap) {
+                privacy_link_title = snap.val();
+
+                // Split the sources based on semicolon placement
+                var new_source_link = privacy_link.split(" ; "); // Separate the different source links
+                var new_source_title = privacy_link_title.split(" ; "); // Same, with source titles
+
+                // Cycle through sources until all gone
+                for (var i = 0; i < new_source_link.length; i++) {
+                    var source_element = document.createElement("a"); // The actual HTML "a" element
+
+                    source_element.appendChild(document.createTextNode(new_source_title[i])); //adding title/text_node to source_element
+                    source_element.href = new_source_link[i];
+                    source_element.setAttribute("target", "_blank");
+
+                    // Add source_element to HTML doc
+                    document.getElementById("privacy-link").appendChild(source_element);
+
+                    // If not the last element, add a comma to separate links
+                    if (i != new_source_link.length - 1) {
+                        var comma_element = document.createElement("span");
+                        comma_element.appendChild(document.createTextNode(", "));
+                        comma_element.style.color = "black";
+                        document.getElementById("privacy-link").appendChild(comma_element);
                     }
                 }
 

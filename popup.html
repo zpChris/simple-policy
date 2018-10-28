@@ -5,7 +5,7 @@
   <!-- Head basic rules -->
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>No Bias News</title>
+  <title>Simple Policy</title>
   <link rel="stylesheet" href="main.css">
   <!-- Firebase connection -->
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
@@ -15,7 +15,7 @@
   <!-- STANDARD SITE when extension not loading or not on news site-->
   <div id="loaded-standard-site">
     <div id="heading">
-      <h2 id="header">No Bias News <img src="images/no-bias-news-128.png" width="20px" /></h2>
+      <h2 id="header">Simple Policy <img src="images/simple-policy-128.png" width="20px"/></h2>
       <a href="https://openlensresearch.weebly.com/" target="_blank"><img id="open-lens-heading-tag" src="images/open-lens-made-by-logo.png" width="125px"/></a>
     </div>
     <hr>
@@ -23,15 +23,14 @@
       About
     </div>
     <div id="section-p">
-      No Bias News better educates readers by clearly displaying news 
-      sources' biases and backgrounds when visiting their site.
+      Simple Policy breaks down companies' complex privacy policies into short summaries.
     </div>
     <div id="section-header">
       Methodology
     </div>
     <div id="section-p">
-      We gather our information from <a href="https://mediabiasfactcheck.com/" target="_blank">Media Bias Fact Check</a> 
-      as well as other sources - these are shown when visiting their news page (see <a href="https://www.theatlantic.com/" target="_blank">The Atlantic</a> as an example).
+      We gather our information from directly from the sources' websites; however, our summaries do not account for all the nuances of the companies' privacy policies. If you find any mistakes, or any ratings you 
+      don't agree with, please contact us at <a href="support@openlens.net">support@openlens.net</a>.
     </div>
     <div id="section-header">
       The Makers
@@ -43,8 +42,8 @@
     <hr>
     <div id="section-p">
       Contact: <a href="mailto:support@openlens.net" target="_blank">research@openlens.net</a>
-      Request to add news source: 
-      <a href="mailto:research@openlens.net?subject=Add a News Source&body=Please add the following news source:" target="_blank">here</a>.
+      Request to add a company: 
+      <a href="mailto:research@openlens.net?subject=Add a Company&body=Please add the following company:" target="_blank">here</a>.
     </div>
   </div>
   <!-- FULL-SCREEN LOADING ICON (200x200 screen size, 100x100 loading icon size).
@@ -55,58 +54,100 @@
     </div>
   </div>
 
-  <!-- FULL LOADED NEWS SITE, will load if news site URL is in database
-       Loading icon in news site (...) has no effect, as the div 
-       #loaded-news-site will load once the first asynchronous callback 
+  <!-- FULL LOADED PRIVACY POLICY, will load if company URL is in database
+       Loading icon in company site (...) has no effect, as the div 
+       #loaded-privacy-policy will load once the first asynchronous callback 
        (which is the #company-name) is fetched from the database. If
        a section does not have the corresponding information in the 
        database, that section's display is set to "none" from popup.js. -->
-  <div id="loaded-news-site">
+  <div id="loaded-privacy-policy">
 
-    <!-- Company name and bias button, #bias-button href changes to email
-         or link to bias example based on whether or not that exists for 
-         the particular news source. -->
     <h2 id="company-name">...</h2>
-    <a id="bias-button" href="https://example.com" target="_blank">
-      <div id="bias-rating">...</div>
-      <div id="bias-example">View Example</div>
-    </a>
 
-    <!-- Small tooltip to explain the bias rating and example -->
-    <div id="tooltip">What's this?
-      <span id="tooltiptext">
-        This is a bias rating based on Media Bias Fact Check, along with 
-        an example of a biased article found by Open Lens.
-      </span>
+    <h3 id="simple-policy-learn-more"><a href="https://github.com/zpChris/simple-policy" target="_blank">Learn About Simple Policy  <img src="images/outside_link_icon.png" width="12.5px" /></a></h3>
+
+    <!-- SUMMARIZE THE 1-5 RATINGS WITH TOOLTIPS TO HIDE INFO -->
+
+    <div id="ratings-info-section">
+      <hr>
+      <div class="section-header">Basic Ratings & Info</div>
+      <div class="tooltipname" id="tooltipname-small">What's this?
+        <span class="tooltiptext">
+          These are ratings from Very Poor (Red) to Very Good (Green) for the topics of 
+          "Info the Company Can Access," "With Whom the Company Can Share Data," and "Privacy 
+          Policy Changes the Company Can Implement."
+        </span>
+      </div>
+      <!-- Image that summarizes the color-rating system -->
+      <img src="images/simple-policy-rating-system.png" width="200px" />
+      <div class="tooltipname" id="info-access-color">Info Accessed
+        <span class="tooltiptext" id="info-access-text">
+          ...
+        </span>
+      </div>
+    
+      <div class="tooltipname" id="who-share-color">Sharing Policies
+        <span class="tooltiptext" id="who-share-text">
+          ...
+        </span>
+      </div>
+    
+      <div class="tooltipname" id="change-policy-color">Policy Changes
+        <span class="tooltiptext" id="change-policy-text">
+          ...
+        </span>
+      </div>
     </div>
 
-    <hr>
+    <!-- ACCOUNT INFO/SECURITY SECTION -->
+    <div id="info-security-section">
+      <hr>
+      <div class="section-header">Account & Security</div>
+      <div class="info-security-section-flex">
+        <div class="tooltipname" id="what-info-tooltip">Account Info
+          <span class="tooltiptext" id="what-info-text">
+            ...
+          </span>
+        </div>
+        <div class="tooltipname" id="what-security-tooltip">Security in Place
+          <span class="tooltiptext" id="what-security-text">
+            ...
+          </span>
+        </div>
+        <div id="privacy-link-header">
+          <span id="privacy-link"></span>
+        </div>
+      </div>
+    </div>    
 
-    <!-- More info section includes:
-          -Factual Reporting ranking
-          -Notable Awards
-          -Parent Company
-         The section will always include something as factual reporting is 
-         provided by MBFC, and thus is available for every news organization -->
-    <div id="more-info">
-      <div id="more-info-header">More Info</div>
-      <div class="small-header" id="factual-reporting-header">Factual Reporting</div>
-      <div id="factual-reporting">...</div>
-      <div class="small-header" id="notable-awards-header">Notable Awards</div>
-      <div id="notable-awards">...</div>
-      <div class="small-header" id="parent-company-header">Parent Company</div>
-      <div id="parent-company">...</div>
+    <!-- DATA BREACH ELEMENT -->
+    <div id="db-breach">
+      <hr>
+      <div class="section-header">Past Data Breach</div>
+      
+      <div class="small-header" id="db-date-header">Date Occurred</div>
+      <div class="db-info" id="db-date">...</div>
+      <div class="small-header" id="db-reported-header">Date Reported</div>
+      <div class="db-info" id="db-reported">...</div>
+      <div class="small-header" id="db-people-header">How People Were Affected</div>
+      <div class="db-info" id="db-people">...</div>
+      <div class="small-header" id="db-summary-header">Summary of Events</div>
+      <div class="tooltipname" id="db-summary-tooltip">Hover for Summary
+        <span class="tooltiptext" id="db-summary-text">
+          ...
+        </span>
+      </div>
+      <div id="db-sources-header">Sources:
+        <span id="db-sources"></span>
+      </div>
     </div>
-
-    <hr>
 
     <!-- Footer includes sources and an ending Open Lens tag. The sources are
          filled in by JavaScript directly from the backend - if there are no
          sources, nothing is added, and #sources-header disappears. -->
     <div id="footer">
-      <div id="sources-header">Sources:
-        <span id="sources"></span>
-      </div>
+      <hr>
+      <b>Note: </b>Simple Policy is still in beta. We advise that users do further research to obtain unbiased, accurate information. Thank you.
       <div id="open-lens-tag"><a href="https://openlensresearch.weebly.com/" target="_blank"><img src="images/open-lens-made-by-logo.png" width="150px" margin="0px"></a>
       </div>
     </div>

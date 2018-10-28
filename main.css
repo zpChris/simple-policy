@@ -13,7 +13,7 @@ body {
 }
 
 hr {
-  border-top: 0.25px solid #f0f0f0;
+  border-top: 0.25px solid #dddddd;
 }
 
 /* ----------
@@ -52,7 +52,7 @@ STANDARD SITE
 
 /* ----------
 
-NEWS SITE
+PRIVACY POLICY SITE
 
  --------- */
 
@@ -69,53 +69,38 @@ a, a:visited {
   margin: 20px 0px 5px 0px;
 }
 
-/* BIAS BUTTON THAT TRANSITIONS TO EXAMPLE LINK ON HOVER */
+/* RATINGS-INFO SECTION; HOUSES INFORMATION WITH BOTH 1-5 SCALE AND MORE INFO */
 
-/* Gray color only if #loaded-news-site somehow loads before #loading-site.
-   #bias-example hidden (using overflow) under #bias-rating, replaces 
-   #bias-rating on hover of #bias-button. */
-#bias-button {
-  height: 48px;
-  display: inline-block;
-  background-color: #ffffff;
-  color: #B2AFAF;
-  border: 3px solid #B2AFAF;
-  text-align: center;
-  text-decoration: none;
-  font-family: sans-serif;
-  overflow: hidden;
-  border-radius: 30px;
-}
-#bias-rating, #bias-example {
-  display: block;
-  padding: 0 24px;
-  line-height: 48px;
-  transition: margin .2s;
-}
-/* Gray gradient only if #loaded-news-site somehow loads before #loading-site. */
-#bias-rating {
+/* Section header not the same as #section-header in Standard Site */
+.section-header {
   font-size: 20px;
-  background:linear-gradient(135deg, #E3E3E3 0%,#6a6e6f 100%);
-  color: #ffffff;
-}
-#bias-example {
-  font-size: 17.5px;
-}
-/* On hover of #bias-button, #bias-rating disappears and #bias-example appears */
-#bias-button:hover #bias-rating {
-  margin-top: -48px;
+  text-align: center;
+  font-weight: 600;
 }
 
-/* TOOLTIP THAT SHOWS QUICK EXPLANATION ON HOVER */
+#tooltipname-small {
+  font-size: 12px;
+  background: none;
+  display: inline-block;
+  padding: 0px;
+  text-decoration-line: none;
+  margin: 10px 0px;
+  border-bottom: 2px dotted black;
+}
 
-#tooltip {
+/* TOOLTIP BUTTONS THAT SUMMARIZES IMPORTANT PRIVACY INFO */
+
+.tooltipname {
+  background: gray;
   display: inline-block;
   position: relative;
   margin: 5px 0px;
-  font-size: 12px;
-  border-bottom: 2px dotted black;
+  font-size: 18px;
+  padding: 10px;
+  text-decoration-line: underline;
+  border-radius: 2px;
 }
-#tooltiptext {
+.tooltiptext {
   font-family: sans-serif;
   font-size: 12px;
   line-height: 1.3;
@@ -129,11 +114,11 @@ a, a:visited {
   padding: 5px 5px;
   position: absolute;
   z-index: 1;
-  top: 150%;
+  top: 100%;
   left: 50%;
   margin-left: -90px;
 }
-#tooltiptext::after {
+.tooltiptext::after {
   content: "";
   position: absolute;
   bottom: 100%;
@@ -143,45 +128,72 @@ a, a:visited {
   border-style: solid;
   border-color: transparent transparent black transparent;
 }
-#tooltip:hover #tooltiptext {
+.tooltipname:hover .tooltiptext {
   visibility: visible;
 }
 
-/* MORE INFO SECTION, ALIGNED LEFT (EXCEPT FOR HEADER) */
-
-#more-info {
-  text-align: left;
+/* Quick fix to make tooltip button the same size as remaining section elements */
+#info-access-color {
+  padding: 10px 16px;
 }
-#more-info-header {
-  font-size: 20px;
-  text-align: center;
+
+/* DATABASE BREACH SECTION, ALIGNED LEFT (EXCEPT FOR HEADER) */
+
+#db-breach {
+  text-align: left;
 }
 .small-header {
   margin: 5px 0px;
   font-size: 12px;
   line-height: 1.4;
-  color: #c0c0c0;
-}
-#factual-reporting, #notable-awards, #parent-company {
-  font-size: 18.5px;
-}
-#factual-reporting {
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-/* FOOTER WITH SOURCES AND OPEN LENS TAG */
-
-#footer {
-  text-align: left;
-}
-#sources-header {
-  font-size: 12px;
   color: #a0a0a0;
 }
-#sources {
-  font-size: 11px;
-  padding: 2.5px 0px;
+.db-info {
+  font-size: 18.5px;
+}
+
+/* DB Breach ummary using tooltip class, modifying/undoing old design elements */
+#db-summary-tooltip {
+  font-size: 18.5px;
+  background: none;
+  display: inline-block;
+  padding: 0px;
+  text-decoration-line: none;
+  margin: 10px 0px;
+  border-bottom: 2px dotted black;
+}
+
+/* ACCOUNT INFO THEY COLLECT AND SECURITY THAT IS IN PLACE */
+
+#what-info-tooltip {
+  text-align: center;
+  font-size: 16px;
+  background: none;
+  padding: 0px;
+  text-decoration-line: none;
+  margin: 10px 0px;
+  border-bottom: 2px dotted black;
+}
+#what-security-tooltip {
+  text-align: center;
+  font-size: 16px;
+  background: none;
+  padding: 0px;
+  text-decoration-line: none;
+  margin: 10px 0px;
+  border-bottom: 2px dotted black;
+}
+
+/* FOOTER WITH PRIVACY LINK AND OPEN LENS TAG */
+
+#privacy-link-header {
+  margin-top: 7.5px;
+  font-size: 18px;
+  color: #a0a0a0;
+}
+#privacy-link {
+  font-size: 18px;
+  padding: 10px 0px;
   text-decoration: none;
 }
 #open-lens-tag {

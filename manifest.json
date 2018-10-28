@@ -1,17 +1,17 @@
 {
   "manifest_version": 2,
-  "name": "No Bias News",
-  "description": "No Bias News reveals the biases and backgrounds of various news sources.",
-  "version": "1.01",
+  "name": "Simple Policy",
+  "description": "Simple Policy breaks down companies' complex privacy policies into short summaries.",
+  "version": "1.00",
   "icons": {
-    "128": "images/no-bias-news-128.png",
-    "64": "images/no-bias-news-64.png",
-    "48": "images/no-bias-news-48.png",
-    "32": "images/no-bias-news-32.png",
-    "16": "images/no-bias-news-16.png"
+    "128": "images/simple-policy-128.png",
+    "64": "images/simple-policy-64.png",
+    "48": "images/simple-policy-48.png",
+    "32": "images/simple-policy-32.png",
+    "16": "images/simple-policy-16.png"
   },
   "browser_action": {
-    "default_icon": "images/no-bias-news-128.png",
+    "default_icon": "images/simple-policy-128.png",
     "default_popup": "popup.html"
   },
   "background": {
