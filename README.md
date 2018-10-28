@@ -43,7 +43,7 @@ We hope that our tool can support their research and encourage users to make inf
 
 **How should I use this tool?**
 
-You should use this tool to obtain simplified information about a company's privacy policy. Given that the chrome extension cannot handle all of the information given in the company's documents, we encourage users to use Simple Privacy as a tool to supplement further research.
+You should use this tool to obtain simplified information about a company's privacy policy. Given that the chrome extension cannot handle all of the information given in the company's documents, we encourage users to use Simple Policy as a tool to supplement further research.
 
 **What is Open Lens?**
 
